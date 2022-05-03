@@ -7,7 +7,7 @@ import axios from 'axios';
 // }
 
 function App () {
-  
+  const[playerCount, setPlayerCount] = useState
 
   const getGenStats = () => {
     axios.get('/general')
@@ -22,7 +22,7 @@ function App () {
   return (
     <div>
     <h1>Hello, World!</h1>
-    <button onClick={getGenStats}></button>
+    <button onClick={getGenStats} style={{color: 'blue', padding: '8px 8px', textAlign: 'center', textDecoration: 'none', display: 'inline-block', fontSize: '8px'}}>View Player Information</button>
     </div>
   )
 }

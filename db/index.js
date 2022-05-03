@@ -10,13 +10,15 @@ db.once('open', () => {
   console.log('mongoose connected successfully');
 });
 
-const TrackedUserSchema = new mongoose.Schema({
+const FavoritedUserSchema = new mongoose.Schema({
   username: {type: String, required: true},
-  created: {type: Number, required: true},
+  created: {type: Date, required: true},
   gamesplayed: {type: Number, required: true},
   gameswon: {type: Number, required: true},
   gametime: {type: Number, required: true},
   country: {type: String, required: true},
 })
 
-const trackedUser = mongoose.model('trackedusers', TrackedUserSchema);
+const FavoritedUser = mongoose.model('favoritedusers', FavoritedUserSchema);
+
+module.exports = FavoritedUser;

@@ -1,9 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Alert from '@mui/material/Alert';
-
+import {Button, TextField, Alert, Grid} from '@mui/material';
 
 function App () {
   const [playerCount, setPlayerCount] = useState(0);
@@ -31,10 +28,13 @@ function App () {
     <div>
     <h1>Tetri.no</h1>
     <div>{playerCount}</div>
+    <Grid container spacing={0} direction="column" alignItems="center" justifyContent="center" style={{ minHeight: '100vh' }} background-color="linear-gradient(90deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%)">
+    <Grid item xs={3}>
+    <TextField label="Text Here" color="primary" background-color="white" margin="normal" />
     <Button variant="contained">Find Tetr.io User</Button>
-    <TextField label="Text Here" size="medium" margin="normal" />
-    <Alert severity="info">This is an info alert — check it out!</Alert>
-    <Alert severity="success">This is a success alert — check it out!</Alert>
+    </Grid>
+    </Grid>
+    <Alert severity="info" color="error">No such user! | Either you mistyped something, or the account no longer exists!</Alert>
     </div>
   )
 }

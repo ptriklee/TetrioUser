@@ -44,10 +44,7 @@
     "nodemon": "^2.0.16",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
-    "sass-loader": "^12.6.0",
-    "style-loader": "^3.3.1",
-    "styled-components": "^5.3.5",
-    "url-loader": "^4.1.1"
+    "styled-components": "^5.3.5"
   },
   "devDependencies": {
     "body-parser": "^1.18.3",

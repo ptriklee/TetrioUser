@@ -1,31 +1,35 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-// class App extends React.Component {
-//   render() {
-//       return <h1>Hello, World!</h1>
-//   }
-// }
 
 function App () {
-  const[playerCount, setPlayerCount] = useState
+  const [playerCount, setPlayerCount] = useState(0);
 
-  const getGenStats = () => {
+  useEffect(() => {
     axios.get('/general')
-    .then(res => {
-      console.log('data >>>', res.data.data)
+    .then(response => {
+      console.log(response)
+      setPlayerCount(response.data.data.usercount)
     })
     .catch(err => {
-      console.log('no good', err)
-    })
-  }
+      console.log(err)
+    }), [null]
+  });
+
+    //   const timer = window.setInterval(() => {
+    //     setPlayerCount(prevTime => prevTime + 1000);
+    //   }, 1000);
+    //   return () => {
+    //     window.clearInterval(timer);
+    //   };
+    // })
 
   return (
     <div>
     <h1>Hello, World!</h1>
-    <button onClick={getGenStats} style={{color: 'blue', padding: '8px 8px', textAlign: 'center', textDecoration: 'none', display: 'inline-block', fontSize: '8px'}}>View Player Information</button>
+    <div>{playerCount}</div>
+    <button style={{color: 'blue', padding: '8px 8px', textAlign: 'center', textDecoration: 'none', display: 'inline-block', fontSize: '8px'}}>View Player Information</button>
     </div>
   )
 }
-
 
 export default App;

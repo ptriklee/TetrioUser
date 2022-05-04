@@ -1,0 +1,12 @@
+head {
+  text-align: center;
+  color: blue;
+}
+
+html {
+  background: url('wp2675338-tetris-wallpaper.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}

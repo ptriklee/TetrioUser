@@ -32,7 +32,7 @@ app.get('/users', (req, res) => {
   const name = req.body.name;
   axios.get(`https://ch.tetr.io/api/users/${name}`)
     .then(response => {
-      console.log('data >>', response.data.data)
+      // console.log('data >>', response.data.data)
       res.send(response.data)
     })
     .catch(err => {

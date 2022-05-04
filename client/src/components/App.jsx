@@ -7,13 +7,13 @@ function App () {
   useEffect(() => {
     axios.get('/general')
     .then(response => {
-      console.log(response)
+      console.log(response.data.data.usercount)
       setPlayerCount(response.data.data.usercount)
     })
     .catch(err => {
       console.log(err)
-    }), [null]
-  });
+    })
+  }, []);
 
     //   const timer = window.setInterval(() => {
     //     setPlayerCount(prevTime => prevTime + 1000);
@@ -25,7 +25,7 @@ function App () {
 
   return (
     <div>
-    <h1>Hello, World!</h1>
+    <h1>Tetri.no</h1>
     <div>{playerCount}</div>
     <button style={{color: 'blue', padding: '8px 8px', textAlign: 'center', textDecoration: 'none', display: 'inline-block', fontSize: '8px'}}>View Player Information</button>
     </div>

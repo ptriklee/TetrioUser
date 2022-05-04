@@ -28,8 +28,9 @@ app.get('/general', (req, res) => {
     })
 })
 
-app.get('/users', (req, res) => {
-  const name = req.body.name;
+app.get('/users/:user', (req, res) => {
+  console.log('search req>>', req.params)
+  const name = req.params.user;
   axios.get(`https://ch.tetr.io/api/users/${name}`)
     .then(response => {
       // console.log('data >>', response.data.data)

@@ -1,5 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Alert from '@mui/material/Alert';
+
 
 function App () {
   const [playerCount, setPlayerCount] = useState(0);
@@ -27,7 +31,10 @@ function App () {
     <div>
     <h1>Tetri.no</h1>
     <div>{playerCount}</div>
-    <button style={{color: 'blue', padding: '8px 8px', textAlign: 'center', textDecoration: 'none', display: 'inline-block', fontSize: '8px'}}>View Player Information</button>
+    <Button variant="contained">Find Tetr.io User</Button>
+    <TextField label="Text Here" size="medium" margin="normal" />
+    <Alert severity="info">This is an info alert — check it out!</Alert>
+    <Alert severity="success">This is a success alert — check it out!</Alert>
     </div>
   )
 }

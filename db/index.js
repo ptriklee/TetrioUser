@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/mvp', {
+mongoose.connect('mongodb://127.0.0.1:27017/mvp', {
   useNewUrlParser: true, useUnifiedTopology: true
 });
 
@@ -11,10 +11,10 @@ db.once('open', () => {
 });
 
 const FavoritedUserSchema = new mongoose.Schema({
-  username: {type: String, required: true},
-  gamesplayed: {type: Number, required: true},
-  gameswon: {type: Number, required: true},
-  gametime: {type: Number, required: true},
+  username: {type: String},
+  gamesplayed: {type: Number},
+  gameswon: {type: Number},
+  gametime: {type: Number},
 })
 
 const FavoritedUser = mongoose.model('favoritedusers', FavoritedUserSchema);

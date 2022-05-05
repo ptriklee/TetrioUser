@@ -3,6 +3,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import { Button, Row, Col, Container, Form, Spinner, OverlayTrigger, Tooltip, Modal} from 'react-bootstrap';
 import User from './User.jsx';
+import Favorited from './Favorited.jsx';
 
 function App () {
   const [playerCount, setPlayerCount] = useState(0);
@@ -73,6 +74,7 @@ function App () {
     }
   };
 
+
   const renderTooltip = (props) => (
     <Tooltip id="button-tooltip" {...props}>
       Click to refresh count
@@ -81,7 +83,8 @@ function App () {
 
   return (
     <div>
-    <Button variant="flat">Saved Users</Button>
+    {/* <Button variant="flat">Saved Users</Button> */}
+    <Favorited/>
     <Container className="justify-content" style={{marginTop: "6%"}}>
     <Row className="justify-content-md-center">
     <Col md="auto">

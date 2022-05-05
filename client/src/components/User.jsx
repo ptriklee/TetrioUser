@@ -3,10 +3,6 @@ import { Accordion } from 'react-bootstrap';
 import moment from 'moment';
 
 function User ({users}) {
-  // const sec = user.gametime;
-  // const time = moment.utc((user.gametime)*1000).format('HH:mm:ss')
-  // const percent = (user.gameswon/user.gamesplayed)
-  // const winRate = (Math.round((user.gameswon/user.gamesplayed) * 100))
   let key = 1;
 
   return(

@@ -1,11 +1,11 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import { Button, Row, Col, Container, Form, Alert, Spinner, } from 'react-bootstrap';
+import { Button, Row, Col, Container, Form, Spinner, OverlayTrigger, Tooltip, Modal} from 'react-bootstrap';
 import User from './User.jsx';
 
 function App () {
-  const [playerCount, setPlayerCount] = useState('');
+  const [playerCount, setPlayerCount] = useState(0);
   const [userName, setUserName] = useState('');
   const [notFound, setNotFound] = useState(false);
   const [reqNotMet, setReqNotMet] = useState(false);
@@ -66,6 +66,12 @@ function App () {
     }
   };
 
+  const renderTooltip = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+      Click to refresh count
+    </Tooltip>
+  );
+
   return (
     <div>
     <Container className="justify-content" style={{marginTop: "10%"}}>
@@ -88,7 +94,9 @@ function App () {
       ?
     <Col md="auto" className="text-white"><div><Spinner animation="border" size="sm"/> calculating live players </div></Col>
       :
+      <OverlayTrigger placement="bottom" delay={{ show: 250, hide: 4000 }} overlay={renderTooltip}>
     <Col md="auto" className="text-white"><div onClick={(e) => reloadCount(e)} style={{cursor: "pointer"}}>{playerCount} current players!</div></Col>
+      </OverlayTrigger>
       }
     </Row>
     <Row>
@@ -105,6 +113,9 @@ function App () {
     </Form>
     </Row>
     <br />
+    <Row>
+      <User users={users}/>
+    </Row>
     {/* {(reqNotMet)
       ?
       <Alert variant="danger" onClose={() => setReqNotMet(false)} dismissible>
@@ -123,9 +134,7 @@ function App () {
       </p>
       </Alert>
       : null} */}
-      <Row>
-      <User users={users}/>
-      </Row>
+    
     </Container>
     </div>
   )

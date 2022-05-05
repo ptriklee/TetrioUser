@@ -9,8 +9,9 @@ function App () {
   const [userName, setUserName] = useState('');
   const [notFound, setNotFound] = useState(false);
   const [reqNotMet, setReqNotMet] = useState(false);
-  const [users, setUsers] = useState({});
+  const [users, setUsers] = useState([]);
   const [submit, setSubmit] = useState(false);
+  // setTheArray(oldArray => [...oldArray, newElement]);
 
   useEffect(() => {
     axios.get('/general')

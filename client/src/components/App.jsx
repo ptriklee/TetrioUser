@@ -37,7 +37,9 @@ function App () {
       axios.get(`/users/${input}`)
         .then(response => {
           console.log('response>>', response.data.data.user)
-          setUsers(response.data.data.user)
+          // setUsers(response.data.data.user)
+          setUsers(oldUsers => [...oldUsers, response.data.data.user])
+          console.log(users)
           setSubmit(true)
         })
         .catch(err => {

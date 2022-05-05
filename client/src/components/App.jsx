@@ -11,6 +11,9 @@ function App () {
   const [reqNotMet, setReqNotMet] = useState(false);
   const [users, setUsers] = useState([]);
 
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   useEffect(() => {
     axios.get('/general')
     .then(response => {
@@ -50,7 +53,7 @@ function App () {
     if (input.length >= 3 && input.length <= 16) {
       axios.get(`/users/${input}`)
         .then(response => {
-          console.log('response>>', response.data.data.user)
+          // console.log('response>>', response.data.data.user)
           // setUsers(response.data.data.user)
           setUsers(oldUsers => [...oldUsers, response.data.data.user])
           console.log(users)
@@ -74,7 +77,7 @@ function App () {
 
   return (
     <div>
-    <Container className="justify-content" style={{marginTop: "10%"}}>
+    <Container className="justify-content" style={{marginTop: "8%"}}>
     <Row className="justify-content-md-center" style={{color: "blue"}}>
     <Col md="auto">
       <h1 onClick={refreshPage} style={{cursor: "pointer"}}>
@@ -134,7 +137,20 @@ function App () {
       </p>
       </Alert>
       : null} */}
-    
+      <Modal show={notFound} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Container>
     </div>
   )

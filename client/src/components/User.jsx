@@ -7,8 +7,10 @@ function User ({users}) {
 
   return(
     <span>
-      <Accordion defaultActiveKey={key ++} style={{width: "50%", marginLeft: "40%", marginTop: "-63px"}} flush>
-        {users.map(user =>
+
+
+      <Accordion defaultActiveKey={(users).length} style={{width: "50%", marginLeft: "40%", marginTop: "-63px"}} flush>
+        {users.slice(-5).map(user =>
         <Accordion.Item eventKey={key ++} key={user._id}>
           <Accordion.Header>{user.username}</Accordion.Header>
           <Accordion.Body>
@@ -23,9 +25,12 @@ function User ({users}) {
           Total Time Played:
           &nbsp;
           {moment.utc((user.gametime)*1000).format('HH:mm:ss')}
-          <b>
+          {(user.gamesplayed > 0)
+          ? <b>
           Win Rate: {(Math.round((user.gameswon/user.gamesplayed) * 100))}%
           </b>
+          : <b>No games played yet!</b>
+          }
           </Accordion.Body>
         </Accordion.Item>
         )}

@@ -12,11 +12,9 @@ db.once('open', () => {
 
 const FavoritedUserSchema = new mongoose.Schema({
   username: {type: String, required: true},
-  created: {type: Date, required: true},
   gamesplayed: {type: Number, required: true},
   gameswon: {type: Number, required: true},
   gametime: {type: Number, required: true},
-  country: {type: String, required: true},
 })
 
 const FavoritedUser = mongoose.model('favoritedusers', FavoritedUserSchema);

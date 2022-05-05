@@ -8,10 +8,16 @@ html {
 
 h1 {
   font-family: 'Press Start 2P';
+  font-size: 70px;
 }
 
 body {
   font-family: 'HUN-din 1451', sans-serif;
+}
+
+.accordion-item {
+  background-color: #797979;
+  border: 1px solid rgba(0, 0, 0, 0.125);
 }
 
 .accordion-button:not(.collapsed) {
@@ -27,7 +33,7 @@ body {
 
 .accordion-body {
   padding: 1rem 1.25rem;
-  background-color: rgb(255, 255, 255);
+  background-color: rgba(255, 255, 255, 0.824);
 }
 
 .accordion-item:last-of-type .accordion-collapse {
@@ -43,8 +49,21 @@ body {
 
 b {
   font-size: 20px;
+  color: #159fe9;
   align-self: flex-end;
   position: relative;
-  left: 50px;
+  left: 75px;
   bottom: 25px;
+}
+
+.modal-content{
+  background-color: #e56b2e;
+  color: rgb(0, 0, 0);
+}
+
+.btn-flat {
+  background-color: rgb(222, 150, 5);
+  color: white;
+  margin-left: 90%;
+  margin-top: 2%;
 }

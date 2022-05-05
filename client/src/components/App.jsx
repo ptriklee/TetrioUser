@@ -11,8 +11,8 @@ function App () {
   const [reqNotMet, setReqNotMet] = useState(false);
   const [users, setUsers] = useState([]);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleClose1 = () => setNotFound(false);
+  const handleClose2 = () => setReqNotMet(false);
 
   useEffect(() => {
     axios.get('/general')
@@ -52,11 +52,15 @@ function App () {
     const input = name.toLowerCase()
     if (input.length >= 3 && input.length <= 16) {
       axios.get(`/users/${input}`)
-        .then(response => {
-          // console.log('response>>', response.data.data.user)
+      .then(response => {
+          if(response.data.success === true) {
+          console.log('response>>', response.data)
           // setUsers(response.data.data.user)
           setUsers(oldUsers => [...oldUsers, response.data.data.user])
           console.log(users)
+          } else {
+            setNotFound(true)
+          }
         })
         .catch(err => {
           console.log('err>>', err)
@@ -77,18 +81,19 @@ function App () {
 
   return (
     <div>
+    <Button variant="flat">Info</Button>
     <Container className="justify-content" style={{marginTop: "8%"}}>
-    <Row className="justify-content-md-center" style={{color: "blue"}}>
+    <Row className="justify-content-md-center">
     <Col md="auto">
       <h1 onClick={refreshPage} style={{cursor: "pointer"}}>
     <span style={{color: "#FF0000"}}>T</span>
     <span style={{color: "#66CC66"}}>e</span>
-    <span style={{color: "#FF9966"}}>t</span>
+    <span style={{color: "#DB5B1A"}}>t</span>
     <span style={{color: "#FFCCCC"}}>r</span>
     <span style={{color: "#2428b3"}}>i</span>
     <span style={{color: "#FF9966"}}>.</span>
     <span style={{color: "#FF0066"}}>n</span>
-    <span style={{color: "#cfcf19"}}>o</span>
+    <span style={{color: "#CFCF19"}}>o</span>
       </h1>
     </Col>
     </Row>
@@ -97,7 +102,7 @@ function App () {
       ?
     <Col md="auto" className="text-white"><div><Spinner animation="border" size="sm"/> calculating live players </div></Col>
       :
-      <OverlayTrigger placement="bottom" delay={{ show: 250, hide: 4000 }} overlay={renderTooltip}>
+      <OverlayTrigger placement="bottom" delay={{ show: 250, hide: 400 }} overlay={renderTooltip}>
     <Col md="auto" className="text-white"><div onClick={(e) => reloadCount(e)} style={{cursor: "pointer"}}>{playerCount} current players!</div></Col>
       </OverlayTrigger>
       }
@@ -119,40 +124,22 @@ function App () {
     <Row>
       <User users={users}/>
     </Row>
-    {/* {(reqNotMet)
-      ?
-      <Alert variant="danger" onClose={() => setReqNotMet(false)} dismissible>
-      <Alert.Heading>Uh Oh!</Alert.Heading>
-      <p>
-        Please review the character requirements
-      </p>
-      </Alert>
-      : null}
-    {(notFound)
-      ?
-      <Alert variant="warning" onClose={() => setNotFound(false)} dismissible>
-      <Alert.Heading>Oh No!</Alert.Heading>
-      <p>
-        Either you mistyped something, or the account no longer exists
-      </p>
-      </Alert>
-      : null} */}
-      <Modal show={notFound} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    </Container>
-    </div>
+    <Modal show={notFound} onHide={handleClose1}>
+      <Modal.Header closeButton>
+        <Modal.Title>Oh No!</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>Either you mistyped something, or the account no longer   exists
+      </Modal.Body>
+    </Modal>
+    <Modal show={reqNotMet} onHide={handleClose2}>
+      <Modal.Header closeButton>
+        <Modal.Title>Uh Oh!</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>Please review the character requirements
+      </Modal.Body>
+    </Modal>
+  </Container>
+  </div>
   )
 }
 

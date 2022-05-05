@@ -9,9 +9,9 @@ MERN stack
 - React
 - Node
 
-Heavy usage of React-Bootstrap
-Usage of [Tetr.io live API]
-(https://tetr.io/about/api/).
+- Heavy usage of React-Bootstrap
+- Usage of Tetr.io live API
+https://tetr.io/about/api/.
 
 ## How to start the tracker:
 - Fork & Clone this repository to local system

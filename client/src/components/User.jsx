@@ -11,7 +11,7 @@ function User ({users}) {
 
   return(
     <span>
-      <Accordion activeKey={key} style={{width: "50%", marginLeft: "40%", marginTop: "-63px"}} flush>
+      <Accordion defaultActiveKey={key ++} style={{width: "50%", marginLeft: "40%", marginTop: "-63px"}} flush>
         {users.map(user =>
         <Accordion.Item eventKey={key ++} key={user._id}>
           <Accordion.Header>{user.username}</Accordion.Header>

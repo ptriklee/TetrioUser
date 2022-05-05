@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import { Button, Row, Col, Container, Form, Alert, Spinner, Modal, OverlayTrigger } from 'react-bootstrap';
+import { Button, Row, Col, Container, Form, Alert, Spinner, } from 'react-bootstrap';
 import User from './User.jsx';
 
 function App () {
@@ -10,8 +10,6 @@ function App () {
   const [notFound, setNotFound] = useState(false);
   const [reqNotMet, setReqNotMet] = useState(false);
   const [users, setUsers] = useState([]);
-  const [submit, setSubmit] = useState(false);
-  // setTheArray(oldArray => [...oldArray, newElement]);
 
   useEffect(() => {
     axios.get('/general')
@@ -24,10 +22,26 @@ function App () {
     })
   }, []);
 
+  const reloadCount = (e) => {
+    e.preventDefault();
+    axios.get('/general')
+    .then(response => {
+      console.log(response.data.data.usercount)
+      setPlayerCount(response.data.data.usercount)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
   const handleChange = (e) => {
     e.preventDefault();
     setUserName(e.target.value)
   };
+
+  const refreshPage = () => {
+    window.location.reload(false);
+  }
 
   const handleSearch = (e, name) => {
     // console.log('name>>', name)
@@ -40,7 +54,6 @@ function App () {
           // setUsers(response.data.data.user)
           setUsers(oldUsers => [...oldUsers, response.data.data.user])
           console.log(users)
-          setSubmit(true)
         })
         .catch(err => {
           console.log('err>>', err)
@@ -58,7 +71,7 @@ function App () {
     <Container className="justify-content" style={{marginTop: "10%"}}>
     <Row className="justify-content-md-center" style={{color: "blue"}}>
     <Col md="auto">
-      <h1>
+      <h1 onClick={refreshPage} style={{cursor: "pointer"}}>
     <span style={{color: "#FF0000"}}>T</span>
     <span style={{color: "#66CC66"}}>e</span>
     <span style={{color: "#FF9966"}}>t</span>
@@ -75,7 +88,7 @@ function App () {
       ?
     <Col md="auto" className="text-white"><div><Spinner animation="border" size="sm"/> calculating live players </div></Col>
       :
-    <Col md="auto" className="text-white"><div>{playerCount} current players!</div></Col>
+    <Col md="auto" className="text-white"><div onClick={(e) => reloadCount(e)} style={{cursor: "pointer"}}>{playerCount} current players!</div></Col>
       }
     </Row>
     <Row>
@@ -92,30 +105,27 @@ function App () {
     </Form>
     </Row>
     <br />
-    {(reqNotMet)
+    {/* {(reqNotMet)
       ?
-      <Alert variant="warning" onClose={() => setReqNotMet(false)} dismissible>
+      <Alert variant="danger" onClose={() => setReqNotMet(false)} dismissible>
       <Alert.Heading>Uh Oh!</Alert.Heading>
       <p>
-        Either you mistyped something, or the account no longer exists
+        Please review the character requirements
       </p>
       </Alert>
       : null}
     {(notFound)
       ?
       <Alert variant="warning" onClose={() => setNotFound(false)} dismissible>
-      <Alert.Heading>Uh Oh!</Alert.Heading>
+      <Alert.Heading>Oh No!</Alert.Heading>
       <p>
         Either you mistyped something, or the account no longer exists
       </p>
       </Alert>
-      : null}
-    {(submit)
-      ?
+      : null} */}
       <Row>
       <User users={users}/>
       </Row>
-      : null}
     </Container>
     </div>
   )

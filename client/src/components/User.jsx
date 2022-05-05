@@ -1,9 +1,14 @@
 import React from 'react';
-import { Accordion } from 'react-bootstrap';
 import moment from 'moment';
+import { Accordion } from 'react-bootstrap';
+import * as Icon from 'react-bootstrap-icons';
 
 function User ({users}) {
   let key = 1;
+
+  const test = () => {
+    console.log('hey')
+  }
 
   return(
     <span>
@@ -29,6 +34,8 @@ function User ({users}) {
           {(user.gamesplayed > 0)
           ? <b>
           Win Rate: {(Math.round((user.gameswon/user.gamesplayed) * 100))}%
+          <Icon.BookmarkStarFill className="icon" onClick={test}/>
+          <small className="fine-print">Click To Save User</small>
           </b>
           : <b>No games played yet!</b>
           }

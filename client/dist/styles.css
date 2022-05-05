@@ -52,8 +52,17 @@ b {
   color: #159fe9;
   align-self: flex-end;
   position: relative;
-  left: 75px;
+  left: 20px;
   bottom: 25px;
+}
+
+.fine-print {
+  align-self: flex-end;
+  position: relative;
+  right: 40px;
+  top: 12px;
+  font-size: 8px;
+  color:rgba(0, 0, 0, 0.452);
 }
 
 .modal-content{
@@ -64,6 +73,17 @@ b {
 .btn-flat {
   background-color: rgb(222, 150, 5);
   color: white;
-  margin-left: 90%;
+  margin-left: 88%;
   margin-top: 2%;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  color:rgba(0, 0, 0, 0.125);
+  margin-left: 5%;
+}
+.icon:hover {
+  fill: #CFCF19;
+  cursor: pointer;
 }

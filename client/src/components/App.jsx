@@ -29,7 +29,7 @@ function App () {
     e.preventDefault();
     axios.get('/general')
     .then(response => {
-      console.log(response.data.data.usercount)
+      // console.log(response.data.data.usercount)
       setPlayerCount(response.data.data.usercount)
     })
     .catch(err => {
@@ -54,10 +54,10 @@ function App () {
       axios.get(`/users/${input}`)
       .then(response => {
           if(response.data.success === true) {
-          console.log('response>>', response.data)
+          // console.log('response>>', response.data)
           // setUsers(response.data.data.user)
           setUsers(oldUsers => [...oldUsers, response.data.data.user])
-          console.log(users)
+          // console.log(users)
           } else {
             setNotFound(true)
           }
@@ -81,8 +81,8 @@ function App () {
 
   return (
     <div>
-    <Button variant="flat">Info</Button>
-    <Container className="justify-content" style={{marginTop: "8%"}}>
+    <Button variant="flat">Saved Users</Button>
+    <Container className="justify-content" style={{marginTop: "6%"}}>
     <Row className="justify-content-md-center">
     <Col md="auto">
       <h1 onClick={refreshPage} style={{cursor: "pointer"}}>
@@ -145,3 +145,36 @@ function App () {
 
 
 export default App;
+
+// <Container fluid className='justify-content'>
+// <Row style={{height: '100px', marginTop: '1%', marginLeft: '5%'}}>
+//   {/* <Col style={{backgroundColor: '#5C5361'}}>1 of 2 text here, can replace these Col tags with the card tags below</Col> */}
+//   <Card border='primary' style={{ width: '18rem', marginRight: '5%' }}>
+// <Card.Header>Header (These are build in for you)</Card.Header>
+// <Card.Body>
+//   <Card.Title>Primary Card Title (Just Big Text basically)</Card.Title>
+//   <Card.Text>
+//     Can Just replace the columns (or even use the Card tags inside the column) tags w/ theses cards
+//   </Card.Text>
+// </Card.Body>
+// </Card>
+//   <Card border='primary' style={{ width: '18rem', marginRight: '5%' }}>
+// <Card.Header>Header (These are build in for you)</Card.Header>
+// <Card.Body>
+//   <Card.Title>Primary Card Title (Just Big Text basically)</Card.Title>
+//   <Card.Text>
+//     Can Just replace the columns (or even use the Card tags inside the column) tags w/ theses cards
+//   </Card.Text>
+// </Card.Body>
+// </Card>
+// <Card border='primary' style={{ width: '18rem', marginRight: '5%' }}>
+// <Card.Header>Header (These are build in for you)</Card.Header>
+// <Card.Body>
+//   <Card.Title>Primary Card Title (Just Big Text basically)</Card.Title>
+//   <Card.Text>
+//     Can Just replace the columns (or even use the Card tags inside the column) tags w/ theses cards
+//   </Card.Text>
+// </Card.Body>
+// </Card>
+// </Row>
+// </Container>

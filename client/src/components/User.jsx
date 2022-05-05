@@ -7,6 +7,7 @@ import * as Icon from 'react-bootstrap-icons';
 
 function User ({users}) {
   const [submitted, setSubmitted] = useState(false);
+  const [submittedList, setSubmittedList] = useState([]);
   let key = 1;
 
   const addToFavorites = (body) => {
@@ -14,6 +15,7 @@ function User ({users}) {
       .then(data => {
         console.log('data >>', data)
         setSubmitted(true)
+        setSubmittedList(oldSubmittedList => [...oldSubmittedList, data.data.username])
       })
       .catch(err => {
         console.log('unsuccessfull add', err)
@@ -44,7 +46,7 @@ function User ({users}) {
           {(user.gamesplayed > 0)
           ? <b className="small-body">
           Win Rate: {(Math.round((user.gameswon/user.gamesplayed) * 100))}%
-          {(submitted)
+          {(submitted && (submittedList.indexOf(user.username)) !== -1 )
           ? <b><Icon.BookmarkStarFill className="disabled-icon"/>
             <small className="fine-print-submit">User Saved!</small></b>
           : <b><Icon.BookmarkStarFill className="icon"  onClick={() => addToFavorites(user)}/>
